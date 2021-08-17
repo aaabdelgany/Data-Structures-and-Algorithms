@@ -64,17 +64,17 @@ const findLongestSubstring = (str1)=>{
         let char=str1[i]
         if(counter[char]){
             mainLong=Math.max(tempLong,mainLong)
+            tempLong-=counter[char]
+        }else{
+            tempLong++
         }
-        else{
-            counter[str1[i]]=1
-            tempLong+=1
-        }
+            counter[str1[i]]=i
     }
     console.log(mainLong)
     return(mainLong)
 }
 
-findLongestSubstring(''); // 0
-findLongestSubstring('rithmschool'); // 7
-findLongestSubstring('thecatinthehat'); // 7
+// findLongestSubstring(''); // 0
+// findLongestSubstring('rithmschool'); // 7
+// findLongestSubstring('thecatinthehat'); // 7
 findLongestSubstring('bbbbbb'); // 1
