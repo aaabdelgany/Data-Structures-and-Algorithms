@@ -33,6 +33,49 @@ const countUniqueValues = (arr)=>{
     }
     return(counter)
 }
-console.log(countUniqueValues([1]))
-console.log(countUniqueValues([]))
-console.log(countUniqueValues([-5,-4,-4,1,1,1,1,1,1,2,2,3,4,5,6,7,8,9,9,9,9,10,10,11]))
+// console.log(countUniqueValues([1]))
+// console.log(countUniqueValues([]))
+// console.log(countUniqueValues([-5,-4,-4,1,1,1,1,1,1,2,2,3,4,5,6,7,8,9,9,9,9,10,10,11]))
+
+
+//averagePair
+//takes a sorted array of integers and a target average. searches the array for a pair that's average 
+//meets the target average
+
+const averagePair = (arr1,avg)=>{
+    if(arr1.length<2) return false
+    let left=arr1[0];
+    let right=arr1[arr1.length-1];
+    let lcounter=0
+    let rcounter=arr1.length-1
+    while(left<right){
+        if((left+right)/2>avg){
+            rcounter-=1;
+            right=arr1[rcounter]
+        }else if((left+right)/2 <avg){
+            lcounter+=1
+            left=arr1[lcounter]
+        }else {
+            return true
+        }
+    }
+    return false
+}
+// console.log(averagePair([1,2,3],2.5))
+
+
+//isSubsequence
+//takes two strings and checks whether the first string appears as a subsequence in the second string without a change in order
+const isSubsequence = (str1,str2)=>{
+    if(str1.length>str2) return false
+    let lcounter=0;
+    for(let i=str1.length;i <= str2.length;i++){
+        if(str1===str2.substring(lcounter,i)) return true
+        else lcounter+=1
+        }
+    return false
+}
+console.log(isSubsequence('hello','hello world'))
+console.log(isSubsequence('sing','sting'))
+console.log(isSubsequence('abc','abracadabra'))
+console.log(isSubsequence('abc','acb'))
