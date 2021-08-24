@@ -56,19 +56,24 @@ const minSubArrayLen = (arr1,int)=>{
 //longest substring with all distinct characters.
 
 const findLongestSubstring = (str1)=>{
-    let tempLong = 0
     let mainLong = 0
     let start=0
     const counter={}
     for(let i =0;i<str1.length;i++){
         let char=str1[i]
         if(counter[char]){
-            mainLong=Math.max(tempLong,mainLong)
-            tempLong-=counter[char]
+            console.log('match')
+            console.log(i)
+            console.log(counter)
+            console.log(counter[char])
+            start=i-counter[char]
+            console.log(start)
+            console.log('hmm')
         }else{
-            tempLong++
+            console.log(i)
         }
-            counter[str1[i]]=i
+        mainLong=Math.max(i-start+1,mainLong)
+        counter[str1[i]]=i
     }
     console.log(mainLong)
     return(mainLong)
