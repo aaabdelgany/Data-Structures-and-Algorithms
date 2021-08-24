@@ -102,3 +102,55 @@ const capitalizeWords = (arr) => {
 };
 
 console.log(capitalizeWords(['i', 'am', 'learning', 'recursion']));
+
+//function that takes an object that may contain nested objects and returns the sum of all even numbers found within
+
+const nestedEvenSum = (obj) => {
+  let total = 0;
+  for (let key of Object.keys(obj)) {
+    if (typeof obj[key] === 'number' && obj[key] % 2 === 0) total += obj[key];
+    if (typeof obj[key] === 'object') total += nestedEvenSum(obj[key]);
+  }
+  return total;
+};
+console.log(
+  nestedEvenSum({ test: 1, no: 2, obj: { testing: 1, nah: 2, ok: { hmm: 4 } } })
+);
+
+//takes an object and returns an object with all the numbers from that obj converted to string
+const stringifyNumbers = (obj) => {
+  let newobj = {};
+  for (let key of Object.keys(obj)) {
+    if (typeof obj[key] === 'number') newobj[key] = obj[key].toString();
+    else if (Array.isArray(obj[key])) newobj[key] = obj[key];
+    else if (typeof obj[key] === 'object') {
+      newobj[key] = stringifyNumbers(obj[key]);
+    } else newobj[key] = obj[key];
+  }
+  return newobj;
+};
+
+let obj = {
+  num: 1,
+  test: [],
+  data: {
+    val: 4,
+    info: {
+      isRight: true,
+      random: 66,
+    },
+  },
+};
+console.log(stringifyNumbers(obj));
+
+//takes an object and returns an array of all the string values in the obj
+
+const collectStrings = (obj) => {
+  let total = [];
+  for (let key of Object.keys(obj)) {
+    if (typeof obj[key] === 'string') total.push(obj[key]);
+    if (typeof obj[key] === 'object')
+      total = total.concat(collectStrings(obj[key]));
+  }
+  return total;
+};
