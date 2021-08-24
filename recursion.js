@@ -59,9 +59,9 @@ const someRecursive = (arr, callBack) => {
 
   return callBack(arr[0]) || someRecursive(arr.slice(1), callBack);
 };
-console.log(someRecursive([1, 2, 3, 4], isOdd));
-console.log(someRecursive([4, 6, 8, 9], isOdd));
-console.log(someRecursive([4, 6, 8], isOdd));
+// console.log(someRecursive([1, 2, 3, 4], isOdd));
+// console.log(someRecursive([4, 6, 8, 9], isOdd));
+// console.log(someRecursive([4, 6, 8], isOdd));
 
 //function that takes an array of numbers and arrays and flattens it into one array of numbers
 
@@ -76,7 +76,29 @@ const flatten = (arr) => {
   return newArray;
 };
 
-console.log(flatten([1, 2, 3, [4, 5]])); // [1, 2, 3, 4, 5]
+// console.log(flatten([1, 2, 3, [4, 5]])); // [1, 2, 3, 4, 5]
 // flatten([1, [2, [3, 4], [[5]]]]); // [1, 2, 3, 4, 5]
 // flatten([[1], [2], [3]]); // [1,2,3]
 // flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]); // [1,2,3
+
+//function that takes an array of strings and returns an array with the first letter of each string capitalized
+const capitalizeFirst = (arr) => {
+  if (arr.length === 1) return arr[0].charAt(0).toUpperCase() + arr[0].slice(1);
+  let newArray = [];
+  newArray.push(arr[0].charAt(0).toUpperCase() + arr[0].slice(1));
+  newArray = newArray.concat(capitalizeFirst(arr.slice(1)));
+  return newArray;
+};
+console.log(capitalizeFirst(['awesome', 'test', 'taco']));
+
+//function that takes an array of strings and returns an array with each string capitalized
+
+const capitalizeWords = (arr) => {
+  if (arr.length === 1) return arr[0].toUpperCase();
+  let newArray = [];
+  newArray.push(arr[0].toUpperCase());
+  newArray = newArray.concat(capitalizeWords(arr.slice(1)));
+  return newArray;
+};
+
+console.log(capitalizeWords(['i', 'am', 'learning', 'recursion']));
