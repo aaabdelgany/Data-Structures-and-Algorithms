@@ -38,3 +38,23 @@ console.log(
     999
   )
 );
+
+//naive string search implementation
+const naiveSearch = (str, arg) => {
+  let matches = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    for (let y = 0; y < arg.length; y++) {
+      if (str[i + y] !== arg[y]) {
+        break;
+      }
+      if (y === arg.length - 1) matches++;
+    }
+  }
+  return matches;
+};
+
+console.log(naiveSearch('noty', 'no'));
+console.log(naiveSearch('noty', 'ty'));
+console.log(naiveSearch('ifrahifrahifrahifrahjaan', 'jaan'));
+console.log(naiveSearch('ifrahifrahifrahifrahjaan', 'ifrah'));
