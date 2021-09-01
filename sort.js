@@ -37,7 +37,7 @@ const betterBubble = (arr) => {
   }
   return arr;
 };
-console.log(betterBubble([48, 78, 1, 2, 3, 5, 7, 4, 22, 15, 17, 98, 40, 16]));
+// console.log(betterBubble([48, 78, 1, 2, 3, 5, 7, 4, 22, 15, 17, 98, 40, 16]));
 
 //this is quadratic time, its better than bubblesort in only one aspect - space complexity.
 //theres only ever 1 swap so it doesnt take much space.
@@ -58,6 +58,26 @@ const selectionSort = (arr) => {
   }
   return arr;
 };
-console.log(selectionSort([5, 4, 3, 2, 1]));
+// console.log(selectionSort([5, 4, 3, 2, 1]));
 
-const insertionSort = (arr) => {};
+//similar to bubble and selection sort, but this one is better in some key scenarios
+//creates a portion of the array which is always sorted and grows until it takes over the
+//whole array
+const insertionSort = (arr) => {
+  for (let i = 1; i < arr.length; i++) {
+    const key = arr[i];
+    for (let j = i - 1; j >= 0; j--) {
+      if (key < arr[j]) {
+        arr[i] = arr[j];
+        i--;
+        arr[j] = key;
+      } else {
+        break;
+      }
+    }
+  }
+  return arr;
+};
+
+console.log(insertionSort([5, 3, 4, 2, 1, 6]));
+console.log(insertionSort([5, 3, 4, 2, 74, 82, 9861, 6, 1]));
