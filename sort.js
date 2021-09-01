@@ -81,3 +81,4 @@ const insertionSort = (arr) => {
 
 console.log(insertionSort([5, 3, 4, 2, 1, 6]));
 console.log(insertionSort([5, 3, 4, 2, 74, 82, 9861, 6, 1]));
+console.log(insertionSort([1, 2, 3, 4, 5, 6]));
