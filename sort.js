@@ -63,6 +63,8 @@ const selectionSort = (arr) => {
 //similar to bubble and selection sort, but this one is better in some key scenarios
 //creates a portion of the array which is always sorted and grows until it takes over the
 //whole array
+//a note about insertion sort, if you have an online algorithm(basically an online stream of data that)
+//keeps adding, then insertionsort works really well with that data and it maintains a running sort well.
 const insertionSort = (arr) => {
   for (let i = 1; i < arr.length; i++) {
     const key = arr[i];
