@@ -110,13 +110,13 @@ const merge = (arr1, arr2) => {
       papa.push(y);
     }
   }
-  console.log(papa);
+  // console.log(papa);
   return papa;
 };
 // console.log(
 //   merge([1, 2, 8, 15, 17, 33, 45, 48, 99], [4, 5, 10, 16, 27, 28, 29, 30])
 // );
-
+console.log(merge([1, 2, 8, 17, 1999], [3, 5, 10, 26, 38, 2000]));
 //break array in half, until length is 1 or empty
 //then merge smaller arrays back with the merge function until we're back at the full length of the array
 //return merged array
