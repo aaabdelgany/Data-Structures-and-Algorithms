@@ -81,6 +81,37 @@ const insertionSort = (arr) => {
   return arr;
 };
 
-console.log(insertionSort([5, 3, 4, 2, 1, 6]));
-console.log(insertionSort([5, 3, 4, 2, 74, 82, 9861, 6, 1]));
-console.log(insertionSort([1, 2, 3, 4, 5, 6]));
+// console.log(insertionSort([5, 3, 4, 2, 1, 6]));
+// console.log(insertionSort([5, 3, 4, 2, 74, 82, 9861, 6, 1]));
+// console.log(insertionSort([1, 2, 3, 4, 5, 6]));
+
+//function that takes two sorted arrays and merges them in order
+const merge = (arr1, arr2) => {
+  let papa = [];
+  let index1 = 0;
+  let index2 = 0;
+  while (index1 < arr1.length && index2 < arr2.length) {
+    if (arr1[index1] < arr2[index2]) {
+      papa.push(arr1[index1]);
+      index1++;
+      console.log(papa, index1, 'index 1');
+    } else {
+      papa.push(arr2[index2]);
+      index2++;
+      console.log(papa, index2, 'index 2');
+    }
+  }
+  if (index1 === arr1.length) {
+    for (let y of arr2.slice(index2)) {
+      papa.push(y);
+    }
+  } else if (index2 === arr2.length) {
+    for (let y of arr1.slice(index1)) {
+      papa.push(y);
+    }
+  }
+  return papa;
+};
+console.log(
+  merge([1, 2, 8, 15, 17, 33, 45, 48, 99], [4, 5, 10, 16, 27, 28, 29, 30])
+);
