@@ -94,11 +94,11 @@ const merge = (arr1, arr2) => {
     if (arr1[index1] < arr2[index2]) {
       papa.push(arr1[index1]);
       index1++;
-      console.log(papa, index1, 'index 1');
+      // console.log(papa, index1, 'index 1');
     } else {
       papa.push(arr2[index2]);
       index2++;
-      console.log(papa, index2, 'index 2');
+      // console.log(papa, index2, 'index 2');
     }
   }
   if (index1 === arr1.length) {
@@ -110,8 +110,23 @@ const merge = (arr1, arr2) => {
       papa.push(y);
     }
   }
+  console.log(papa);
   return papa;
 };
-console.log(
-  merge([1, 2, 8, 15, 17, 33, 45, 48, 99], [4, 5, 10, 16, 27, 28, 29, 30])
-);
+// console.log(
+//   merge([1, 2, 8, 15, 17, 33, 45, 48, 99], [4, 5, 10, 16, 27, 28, 29, 30])
+// );
+
+//break array in half, until length is 1 or empty
+//then merge smaller arrays back with the merge function until we're back at the full length of the array
+//return merged array
+const mergesort = (arr) => {
+  const half = arr.length / 2;
+
+  if (arr.length < 2) {
+    return arr;
+  }
+  return merge(mergesort(arr.slice(0, half)), mergesort(arr.slice(half)));
+};
+
+console.log(mergesort([1, 6, 3, 4, 5, 10, 22, 58, 2, 99, 1000, 14, 15]));
