@@ -147,21 +147,19 @@ const partition = (arr, start = 0, end = arr.length) => {
       swap(arr, i, swapIndex);
     }
   }
-
   swap(arr, start, swapIndex);
   return swapIndex;
 };
-const arr = [5, 4, 2, 8, 3, 9];
+const arr = [7, -50, 47, 1, 5, 4, 2, 8, 3, 100, -15];
 // console.log(partition(arr));
 
-const quicksort = (arr, start = 0, end = arr.length - 1) => {
+const quicksort = (arr, start = 0, end = arr.length) => {
   if (end - start < 2) {
     return;
   }
-  const index = partition(arr);
+  const index = partition(arr, start);
   quicksort(arr, start, index - 1);
   quicksort(arr, index + 1, end);
-
   return arr;
 };
 
