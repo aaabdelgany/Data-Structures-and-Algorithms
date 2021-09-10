@@ -116,7 +116,7 @@ const merge = (arr1, arr2) => {
 // console.log(
 //   merge([1, 2, 8, 15, 17, 33, 45, 48, 99], [4, 5, 10, 16, 27, 28, 29, 30])
 // );
-console.log(merge([1, 2, 8, 17, 1999], [3, 5, 10, 26, 38, 2000]));
+// console.log(merge([1, 2, 8, 17, 1999], [3, 5, 10, 26, 38, 2000]));
 //break array in half, until length is 1 or empty
 //then merge smaller arrays back with the merge function until we're back at the full length of the array
 //return merged array
@@ -129,4 +129,40 @@ const mergesort = (arr) => {
   return merge(mergesort(arr.slice(0, half)), mergesort(arr.slice(half)));
 };
 
-console.log(mergesort([1, 6, 3, 4, 5, 10, 22, 58, 2, 99, 1000, 14, 15]));
+// console.log(mergesort([1, 6, 3, 4, 5, 10, 22, 58, 2, 99, 1000, 14, 15]));
+
+const partition = (arr, start = 0, end = arr.length) => {
+  const pivot = arr[start];
+  let swapIndex = start;
+
+  const swap = (arr, i, y) => {
+    const temp = arr[i];
+    arr[i] = arr[y];
+    arr[y] = temp;
+  };
+
+  for (let i = start + 1; i < end; i++) {
+    if (pivot > arr[i]) {
+      swapIndex++;
+      swap(arr, i, swapIndex);
+    }
+  }
+
+  swap(arr, start, swapIndex);
+  return swapIndex;
+};
+const arr = [5, 4, 2, 8, 3, 9];
+// console.log(partition(arr));
+
+const quicksort = (arr, start = 0, end = arr.length - 1) => {
+  if (end - start < 2) {
+    return;
+  }
+  const index = partition(arr);
+  quicksort(arr, start, index - 1);
+  quicksort(arr, index + 1, end);
+
+  return arr;
+};
+
+console.log(quicksort(arr));
