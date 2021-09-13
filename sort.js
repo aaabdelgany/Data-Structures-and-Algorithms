@@ -197,4 +197,18 @@ const mostDigits = (arr) => {
   }
   return big;
 };
-console.log(mostDigits([1234, 2, 33, 456, 8391010]));
+// console.log(mostDigits([1234, 2, 33, 456, 8391010]));
+
+const radixSort = (arr) => {
+  const biggestDigits = mostDigits(arr);
+  for (let i = 0; i < biggestDigits; i++) {
+    const buckets = Array.from({ length: 10 }, () => []);
+    for (let value of arr) {
+      const num = getDigit(value, i);
+      if (num !== undefined) buckets[num].push(value);
+    }
+    arr = buckets.flat();
+  }
+  return arr;
+};
+console.log(radixSort([1, 2, 566, 3, 78]));
