@@ -153,6 +153,9 @@ const partition = (arr, start = 0, end = arr.length) => {
 const arr = [7, -50, 47, 1, 5, 4, 2, 8, 3, 100, -15];
 // console.log(partition(arr));
 
+//space complexity: O(log n)
+//best and average time complexity: O(nlogn)    doing log base 2 n decompostions each round, and then doing n comparisons
+//worst case scenario: if the data is already sorted, it will be O(n^2), going to go through the n array n times(n compositions) then n comparisons. You can get around this by picking a random element, or even the middle element.
 const quicksort = (arr, start = 0, end = arr.length) => {
   if (end - start < 2) {
     return;
@@ -163,4 +166,35 @@ const quicksort = (arr, start = 0, end = arr.length) => {
   return arr;
 };
 
-console.log(quicksort(arr));
+// console.log(quicksort(arr));
+
+const getDigit = (num, position) => {
+  const stringified = num.toString();
+  digit = stringified[stringified.length - 1 - position];
+  if (digit && digit !== '-') {
+    return digit;
+  } else return 0;
+};
+// console.log(getDigit(12345, 0));
+// console.log(getDigit(12345, 1));
+// console.log(getDigit(12345, 2));
+// console.log(getDigit(12345, 3));
+// console.log(getDigit(12345, 4));
+// console.log(getDigit(-12345, 3));
+
+const digitCount = (num) => {
+  const stringified = num.toString();
+  if (stringified[0] === '-') return stringified.length - 1;
+  return stringified.length;
+};
+// console.log(digitCount(-12345));
+// console.log(digitCount(315));
+
+const mostDigits = (arr) => {
+  let big = 0;
+  for (let num of arr) {
+    big = Math.max(big, digitCount(num));
+  }
+  return big;
+};
+console.log(mostDigits([1234, 2, 33, 456, 8391010]));
