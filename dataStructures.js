@@ -30,6 +30,12 @@ class LinkedList {
     let currIndex = 0;
     let current = this.head;
     let prev = null;
+    if (index === 0) {
+      node.next = this.head;
+      this.head = node;
+      this.size++;
+      return;
+    }
     while (current.next && currIndex < index) {
       currIndex++;
       prev = current;
@@ -45,14 +51,21 @@ class LinkedList {
     let currIndex = 0;
     let prev = null;
     let next = null;
+    if (index === 0) {
+      this.head = this.head.next;
+      this.size--;
+      return;
+    }
     while (current.next && currIndex < index) {
       prev = current;
       current = current.next;
       next = current.next;
       currIndex++;
     }
-    prev.next = next;
-    this.size--;
+    if (currIndex === index) {
+      prev.next = next;
+      this.size--;
+    }
   }
 
   removeDataPoint(dataPoint) {
@@ -74,16 +87,33 @@ class LinkedList {
       }
     }
   }
-  // functions to be implemented
-  // add(element)
-  // insertAt(element, location)
-  // removeFrom(location)
-  // removeElement(element)
-
-  // Helper Methods
-  // isEmpty
-  // size_Of_List
-  // PrintList
+  indexOf(dataPoint) {
+    let current = this.head;
+    let index = 0;
+    if (current.dataPoint === dataPoint) return 0;
+    while (current.next) {
+      current = current.next;
+      index++;
+      if (current.dataPoint === dataPoint) return index;
+    }
+    return -1;
+  }
+  isEmpty() {
+    return this.size === 0;
+  }
+  size_of_list() {
+    return this.size;
+  }
+  printList() {
+    let current = this.head;
+    const printString = [];
+    printString.push(current.dataPoint);
+    while (current.next) {
+      current = current.next;
+      printString.push(current.dataPoint);
+    }
+    return printString;
+  }
 }
 LinkedList.prototype.toString = function () {
   let head = this.head;
@@ -104,6 +134,12 @@ ok.add(17);
 ok.insertAt(6, 1);
 ok.removeFrom(3);
 ok.add(75);
-console.log(ok.toString());
+console.log(ok.printList());
 ok.removeDataPoint(6);
-console.log(ok.toString());
+console.log(ok.printList());
+console.log(ok.indexOf(75));
+console.log(ok.isEmpty());
+console.log(ok.size_of_list());
+ok.removeFrom(15);
+ok.insertAt(67, 0);
+console.log(ok.printList());
