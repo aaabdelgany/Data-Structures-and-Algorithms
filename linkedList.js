@@ -114,7 +114,20 @@ class LinkedList {
     }
     return printString;
   }
+  reverse() {
+    let prev = null;
+    let next = null;
+    let current = this.head;
+    while (current) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    this.head = prev;
+  }
 }
+
 LinkedList.prototype.toString = function () {
   let head = this.head;
   let result = [];
@@ -142,4 +155,6 @@ console.log(ok.isEmpty());
 console.log(ok.size_of_list());
 ok.removeFrom(15);
 ok.insertAt(67, 0);
+console.log(ok.printList());
+ok.reverse();
 console.log(ok.printList());
