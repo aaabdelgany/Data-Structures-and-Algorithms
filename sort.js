@@ -207,6 +207,7 @@ const radixSort = (arr) => {
       const num = getDigit(value, i);
       if (num !== undefined) buckets[num].push(value);
     }
+    console.log(...buckets);
     arr = buckets.flat();
   }
   return arr;
