@@ -4,6 +4,12 @@ class Node {
     this.next = null;
     this.prev = null;
   }
+
+  switchySwitch() {
+    let temp = this.prev;
+    this.prev = this.next;
+    this.next = temp;
+  }
 }
 
 class DoubleLinkedList {
@@ -122,6 +128,22 @@ class DoubleLinkedList {
     }
     return printString;
   }
+
+  reverse() {
+    let current = this.head;
+    let next = null;
+    let prev = null;
+    while (current.next) {
+      next = current.next;
+      prev = current;
+      current.switchySwitch();
+      current = next;
+    }
+
+    this.head = current;
+    current.next = prev;
+    current.prev = null;
+  }
 }
 DoubleLinkedList.prototype.toString = function () {
   let head = this.head;
@@ -152,4 +174,6 @@ console.log(ok.isEmpty());
 console.log(ok.size_of_list());
 ok.removeFrom(15);
 ok.insertAt(67, 0);
+console.log(ok.toString());
+ok.reverse();
 console.log(ok.toString());
