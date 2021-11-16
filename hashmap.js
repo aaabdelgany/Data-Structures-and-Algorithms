@@ -18,6 +18,10 @@ const stringToNum = (str) => {
     if (!hashMap.get(str[i])) return 0;
     total += hashMap.get(str[i]) * 10 ** (str.length - i - 1);
   }
+  console.log(hashMap.keys());
+  console.log(hashMap.values());
+  console.log(hashMap.size);
+  console.log(hashMap.has('3'));
 
   return total;
 };
