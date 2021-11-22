@@ -44,24 +44,31 @@ class LRU {
   read(key) {
     const node = this.map.get(key);
     if (node) {
-      const prev = node.prev;
-      const next = node.next;
-      if (prev) {
-        prev.next = next;
-      } else {
-        this.head = node.next;
-      }
-      if (next) next.prev = prev;
-
-      node.next = null;
-      node.prev = this.tail;
-      this.tail.next = node;
-      this.tail = node;
+      this.pushtoEnd(node);
       this.map.set(key, node);
       return node.value;
     } else {
       return undefined;
     }
+  }
+  pushtoEnd(node) {
+    const prev = node.prev;
+    const next = node.next;
+
+    if (prev) {
+      prev.next = next;
+    } else {
+      this.head = node.next;
+    }
+
+    if (next) {
+      next.prev = prev;
+    }
+
+    node.next = null;
+    node.prev = this.tail;
+    this.tail.next = node;
+    this.tail = node;
   }
   getLRU() {
     return this.head;
@@ -80,7 +87,7 @@ console.log(y.read(4));
 y.read(8);
 y.write(18, 27);
 console.log(y.getLRU());
-
+console.log(y.getMRU());
 // console.log(y.getMRU());
 // y.write(5, 5);
 
