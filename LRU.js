@@ -58,6 +58,9 @@ class LRU {
       this.tail.next = node;
       this.tail = node;
       this.map.set(key, node);
+      return node.value;
+    } else {
+      return undefined;
     }
   }
   getLRU() {
@@ -73,7 +76,7 @@ y.write(4, 6);
 y.write(8, 7);
 // console.log(y.getMRU());
 // console.log(y.getLRU());
-y.read(4);
+console.log(y.read(4));
 y.read(8);
 y.write(18, 27);
 console.log(y.getLRU());
